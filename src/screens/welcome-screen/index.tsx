@@ -1,38 +1,36 @@
-import Button from "@/components/shared/button"
-import SafeAreaWrapper from "@/components/shared/safe-area-wrapper"
-import { AuthScreenNavigationType } from "@/navigation/types"
-import { AnimatedBox, Box, Text } from "@/utils/theme"
-import { useNavigation } from "@react-navigation/native"
-import { LinearGradient } from "expo-linear-gradient"
-import React from "react"
-import { Image } from "react-native"
-import Animated, { ZoomIn } from "react-native-reanimated"
+import Button from '@/components/shared/button';
+import SafeAreaWrapper from '@/components/shared/safe-area-wrapper';
+import {AuthScreenNavigationType} from '@/navigation/types';
+import {Box, Text} from '@/utils/theme';
+import {StyleGuide} from '@/utils/theme/text-variants';
+import {useNavigation} from '@react-navigation/native';
+import {LinearGradient} from 'expo-linear-gradient';
+import React from 'react';
+import {Image} from 'react-native';
+import Animated, {ZoomIn} from 'react-native-reanimated';
 
 const BLOSSOM_IMAGE =
-  "https://res.cloudinary.com/dooxt2sgsdooxt2sgs23233/image/upload/v1676809769/youtube/2023/february/blossom/icon_fb36u3.png"
+  'https://res.cloudinary.com/dooxt2sgsdooxt2sgs23233/image/upload/v1676809769/youtube/2023/february/blossom/icon_fb36u3.png';
 
 const WelcomeScreen = () => {
-  const navigation = useNavigation<AuthScreenNavigationType<"Welcome">>()
-  const navigateToSignInScreen = () => {
-    navigation.navigate("SignIn")
-  }
+  const navigation = useNavigation<AuthScreenNavigationType<'Welcome'>>();
+
   const navigateToSignUpScreen = () => {
-    navigation.navigate("SignUp")
-  }
+    navigation.navigate('SignUp');
+  };
 
   return (
     <SafeAreaWrapper>
       <LinearGradient
         colors={[
-          "#ffffff",
-          "#fcecff",
-          "#f8daff",
-          "#fae2ff",
-          "#fae2ff",
-          "#ffffff",
+          '#ffffff',
+          '#fcecff',
+          '#f8daff',
+          '#fae2ff',
+          '#fae2ff',
+          '#ffffff',
         ]}
-        style={{ flex: 1 }}
-      >
+        style={StyleGuide.flex_1}>
         <Box flex={1} justifyContent="center">
           <Box alignItems="center" mb="3.5">
             <Animated.View entering={ZoomIn.duration(2000)}>
@@ -58,14 +56,13 @@ const WelcomeScreen = () => {
             textAlign="center"
             variant="textXs"
             fontWeight="700"
-            color="gray5"
-          >
+            color="gray5">
             26,698 registered today
           </Text>
         </Box>
       </LinearGradient>
     </SafeAreaWrapper>
-  )
-}
+  );
+};
 
-export default WelcomeScreen
+export default WelcomeScreen;

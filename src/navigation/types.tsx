@@ -1,14 +1,14 @@
-import { ICategory, ITask } from "@/types"
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs"
+import { ICategory, ITask } from '@/types';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import {
   CompositeNavigationProp,
   CompositeScreenProps,
   NavigatorScreenParams,
-} from "@react-navigation/native"
+} from '@react-navigation/native';
 import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
-} from "@react-navigation/native-stack"
+} from '@react-navigation/native-stack';
 
 export type AuthStackParamList = {
   Welcome: undefined
@@ -60,7 +60,7 @@ export type AuthScreenNavigationType<
   RouteName extends keyof AuthStackParamList
 > = CompositeNavigationProp<
   NativeStackNavigationProp<AuthStackParamList, RouteName>,
-  NativeStackNavigationProp<AppStackParamList, "Root">
+  NativeStackNavigationProp<AppStackParamList, 'Root'>
 >
 
 export type RootTabScreenProps<Screen extends keyof RootBottomTabParamList> =

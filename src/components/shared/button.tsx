@@ -1,5 +1,5 @@
-import { Box, Text } from "@/utils/theme"
-import { Pressable } from "react-native"
+import { Box, Text } from '@/utils/theme';
+import { Pressable } from 'react-native';
 
 type ButtonProps = {
   label: string
@@ -19,7 +19,7 @@ const Button = ({
   return (
     <Pressable onPress={onPress} onLongPress={onLongPress} disabled={disabled}>
       <Box
-        bg={disabled ? "gray800" : "primary"}
+        bg={disabled ? 'gray800' : 'primary'}
         py="3.5"
         borderRadius="rounded-7xl"
       >
@@ -28,13 +28,13 @@ const Button = ({
           fontWeight="700"
           color="white"
           textAlign="center"
-          textTransform={uppercase ? "uppercase" : "none"}
+          textTransform={uppercase ? 'uppercase' : 'none'}
         >
           {label}
         </Text>
       </Box>
     </Pressable>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

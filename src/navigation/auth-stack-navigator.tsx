@@ -1,11 +1,11 @@
-import SignInScreen from "@/screens/sign-in-screen"
-import SignUpScreen from "@/screens/sign-up-screen"
-import WelcomeScreen from "@/screens/welcome-screen"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import React from "react"
-import { AuthStackParamList } from "./types"
+import SignInScreen from '@/screens/sign-in-screen';
+import SignUpScreen from '@/screens/sign-up-screen';
+import WelcomeScreen from '@/screens/welcome-screen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { AuthStackParamList } from './types';
 
-const Stack = createNativeStackNavigator<AuthStackParamList>()
+const Stack = createNativeStackNavigator<AuthStackParamList>();
 
 const AuthStackNavigator = () => {
   return (
@@ -32,7 +32,7 @@ const AuthStackNavigator = () => {
         component={SignUpScreen}
       />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
-export default AuthStackNavigator
+export default AuthStackNavigator;

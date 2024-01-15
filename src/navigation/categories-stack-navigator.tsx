@@ -1,11 +1,11 @@
-import CategoriesScreen from "@/screens/categories-screen"
-import CategoryScreen from "@/screens/category-screen"
-import CreateCategoryScreen from "@/screens/create-category-screen"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import React from "react"
-import { CategoriesStackParamList } from "./types"
+import CategoriesScreen from '@/screens/categories-screen';
+import CategoryScreen from '@/screens/category-screen';
+import CreateCategoryScreen from '@/screens/create-category-screen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { CategoriesStackParamList } from './types';
 
-const Stack = createNativeStackNavigator<CategoriesStackParamList>()
+const Stack = createNativeStackNavigator<CategoriesStackParamList>();
 
 const CategoriesStackNavigator = () => {
   return (
@@ -32,7 +32,7 @@ const CategoriesStackNavigator = () => {
         }}
       />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
-export default CategoriesStackNavigator
+export default CategoriesStackNavigator;

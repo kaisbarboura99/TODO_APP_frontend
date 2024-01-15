@@ -1,7 +1,8 @@
-import { IUser } from "@/types"
-import axiosInstance, { BLOSSOM_TOKEN_NAME, saveToken } from "./config"
+import {IUser} from '@/types';
+import axiosInstance, {BLOSSOM_TOKEN_NAME, saveToken} from './config';
+import {erroHandler} from '@/utils/errorHandler';
 
-type RegisterUserTypes = IUser
+type RegisterUserTypes = IUser;
 
 export const registerUser = async ({
   email,
@@ -9,32 +10,33 @@ export const registerUser = async ({
   password,
 }: RegisterUserTypes) => {
   try {
-    const response = await axiosInstance.post("/users/create", {
+    const response = await axiosInstance.post('/users/create', {
       email,
       password,
       name,
-    })
-    return response.data.user
+    });
+
+    return response.data.user;
   } catch (error) {
-    console.log("error in registerUser", error)
-    throw error
+    erroHandler(error);
   }
-}
+};
 
-type LoginUserTypes = Omit<IUser, "name">
+type LoginUserTypes = Omit<IUser, 'name'>;
 
-export const loginUser = async ({ email, password }: LoginUserTypes) => {
+export const loginUser = async ({email, password}: LoginUserTypes) => {
   try {
-    const response = await axiosInstance.post("/users/login", {
+    const response = await axiosInstance.post('/users/login', {
       email,
       password,
-    })
-    const _token = response.data.token
-    axiosInstance.defaults.headers.common["Authorization"] = _token
-    saveToken(BLOSSOM_TOKEN_NAME, _token)
-    return response.data.user
+    });
+    const _token = response.data.token;
+
+    axiosInstance.defaults.headers.common.Authorization = _token;
+    saveToken(BLOSSOM_TOKEN_NAME, _token);
+
+    return response.data.user;
   } catch (error) {
-    console.log("error in loginUser", error)
-    throw error
+    erroHandler(error);
   }
-}
+};

@@ -1,19 +1,19 @@
-import Button from "@/components/shared/button"
-import Input from "@/components/shared/input"
-import SafeAreaWrapper from "@/components/shared/safe-area-wrapper"
-import { AuthScreenNavigationType } from "@/navigation/types"
-import { registerUser } from "@/services/api"
-import { Box, Text } from "@/utils/theme"
-import { useNavigation } from "@react-navigation/native"
-import React from "react"
-import { Controller, useForm } from "react-hook-form"
-import { Pressable } from "react-native"
+import Button from '@/components/shared/button';
+import Input from '@/components/shared/input';
+import SafeAreaWrapper from '@/components/shared/safe-area-wrapper';
+import { AuthScreenNavigationType } from '@/navigation/types';
+import { registerUser } from '@/services/api';
+import { Box, Text } from '@/utils/theme';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable } from 'react-native';
 
 const SignUpScreen = () => {
-  const navigation = useNavigation<AuthScreenNavigationType<"SignUp">>()
+  const navigation = useNavigation<AuthScreenNavigationType<'SignUp'>>();
   const navigateToSignInScreen = () => {
-    navigation.navigate("SignIn")
-  }
+    navigation.navigate('SignIn');
+  };
 
   const {
     control,
@@ -21,29 +21,30 @@ const SignUpScreen = () => {
     formState: { errors },
   } = useForm<IUser>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-  })
+  });
 
   const onSubmit = async (data: IUser) => {
     try {
-      const { email, name, password } = data
+      const { email, name, password } = data;
       /**
        * register user
        */
+
       await registerUser({
         email,
         name,
         password,
-      })
-      navigateToSignInScreen()
+      });
+      navigateToSignInScreen();
     } catch (error) {}
-  }
+  };
 
   return (
     <SafeAreaWrapper>
-      <Box flex={1} px="5.5" mt={"13"}>
+      <Box flex={1} px="5.5" mt={'13'}>
         <Text variant="textXl" fontWeight="700">
           Welcome to Blossom!
         </Text>
@@ -116,7 +117,7 @@ const SignUpScreen = () => {
         <Button label="Register" onPress={handleSubmit(onSubmit)} uppercase />
       </Box>
     </SafeAreaWrapper>
-  )
-}
+  );
+};
 
-export default SignUpScreen
+export default SignUpScreen;

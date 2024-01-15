@@ -1,6 +1,6 @@
-import theme from "@/utils/theme"
-import React, { ReactNode } from "react"
-import { SafeAreaView } from "react-native-safe-area-context"
+import theme from '@/utils/theme';
+import React, { ReactNode } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type SafeAreaWrapperProps = {
   children: ReactNode
@@ -16,7 +16,7 @@ const SafeAreaWrapper = ({ children }: SafeAreaWrapperProps) => {
     >
       {children}
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default SafeAreaWrapper
+export default SafeAreaWrapper;

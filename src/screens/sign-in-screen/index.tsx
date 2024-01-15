@@ -1,20 +1,20 @@
-import Button from "@/components/shared/button";
-import Input from "@/components/shared/input";
-import SafeAreaWrapper from "@/components/shared/safe-area-wrapper";
-import { AuthScreenNavigationType } from "@/navigation/types";
-import { loginUser } from "@/services/api";
-import useUserGlobalStore from "@/store/useUserGlobalStore";
-import { IUser } from "@/types";
-import { Box, Text } from "@/utils/theme";
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Pressable } from "react-native";
+import Button from '@/components/shared/button';
+import Input from '@/components/shared/input';
+import SafeAreaWrapper from '@/components/shared/safe-area-wrapper';
+import { AuthScreenNavigationType } from '@/navigation/types';
+import { loginUser } from '@/services/api';
+import useUserGlobalStore from '@/store/useUserGlobalStore';
+import { IUser } from '@/types';
+import { Box, Text } from '@/utils/theme';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable } from 'react-native';
 
 const SignInScreen = () => {
-  const navigation = useNavigation<AuthScreenNavigationType<"SignIn">>();
+  const navigation = useNavigation<AuthScreenNavigationType<'SignIn'>>();
   const navigateToSignInScreen = () => {
-    navigation.navigate("SignUp");
+    navigation.navigate('SignUp');
   };
 
   const { updateUser } = useUserGlobalStore();
@@ -22,20 +22,21 @@ const SignInScreen = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Omit<IUser, "name">>({
+  } = useForm<Omit<IUser, 'name'>>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
-  const onSubmit = async (data: Omit<IUser, "name">) => {
+  const onSubmit = async (data: Omit<IUser, 'name'>) => {
     try {
       const { email, password } = data;
       const _user = await loginUser({
         email: email.toLowerCase(),
         password: password.toLowerCase(),
       });
+
       updateUser({
         email: _user.email,
         name: _user.name,

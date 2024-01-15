@@ -1,10 +1,10 @@
-import EditTaskScreen from "@/screens/edit-task"
-import HomeScreen from "@/screens/home-screen"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import React from "react"
-import { HomeStackParamList } from "./types"
+import EditTaskScreen from '@/screens/edit-task';
+import HomeScreen from '@/screens/home-screen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { HomeStackParamList } from './types';
 
-const Stack = createNativeStackNavigator<HomeStackParamList>()
+const Stack = createNativeStackNavigator<HomeStackParamList>();
 
 const HomeStackNavigator = () => {
   return (
@@ -24,7 +24,7 @@ const HomeStackNavigator = () => {
         }}
       />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
-export default HomeStackNavigator
+export default HomeStackNavigator;

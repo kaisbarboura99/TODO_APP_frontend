@@ -1,7 +1,7 @@
-import { Box } from "@/utils/theme"
-import React from "react"
-import { ActivityIndicator } from "react-native"
-import SafeAreaWrapper from "./safe-area-wrapper"
+import { Box } from '@/utils/theme';
+import React from 'react';
+import { ActivityIndicator } from 'react-native';
+import SafeAreaWrapper from './safe-area-wrapper';
 
 const Loader = () => {
   return (
@@ -10,7 +10,7 @@ const Loader = () => {
         <ActivityIndicator />
       </Box>
     </SafeAreaWrapper>
-  )
-}
+  );
+};
 
-export default Loader
+export default Loader;

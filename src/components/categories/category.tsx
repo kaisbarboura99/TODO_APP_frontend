@@ -1,29 +1,29 @@
-import { ICategory } from "@/types"
-import { AnimatedBox, Box, Text } from "@/utils/theme"
-import React from "react"
+import { ICategory } from '@/types';
+import { AnimatedBox, Box, Text } from '@/utils/theme';
+import React from 'react';
 
-import { Entypo } from "@expo/vector-icons"
-import { Pressable } from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import { CategoriesNavigationType } from "@/navigation/types"
-import { FadeInRight, FadeInLeft } from "react-native-reanimated"
+import { Entypo } from '@expo/vector-icons';
+import { Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { CategoriesNavigationType } from '@/navigation/types';
+import { FadeInRight, FadeInLeft } from 'react-native-reanimated';
 type CategoryProps = {
   category: ICategory
 }
 
 const Category = ({ category }: CategoryProps) => {
-  const navigation = useNavigation<CategoriesNavigationType>()
+  const navigation = useNavigation<CategoriesNavigationType>();
   const navigateToCreateCategory = () => {
-    navigation.navigate("CreateCategory", {
+    navigation.navigate('CreateCategory', {
       category: category,
-    })
-  }
+    });
+  };
 
   const navigateToCategoryScreen = () => {
-    navigation.navigate("Category", {
+    navigation.navigate('Category', {
       id: category._id,
-    })
-  }
+    });
+  };
 
   return (
     <AnimatedBox entering={FadeInRight} exiting={FadeInLeft}>
@@ -49,7 +49,7 @@ const Category = ({ category }: CategoryProps) => {
         </Box>
       </Pressable>
     </AnimatedBox>
-  )
-}
+  );
+};
 
-export default Category
+export default Category;

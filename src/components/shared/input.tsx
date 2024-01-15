@@ -1,25 +1,25 @@
-import theme, { Box, Text } from "@/utils/theme"
-import { FieldError } from "react-hook-form"
-import { StyleSheet, TextInput, TextInputProps } from "react-native"
+import theme, {Box, Text} from '@/utils/theme';
+import {FieldError} from 'react-hook-form';
+import {StyleSheet, TextInput, TextInputProps} from 'react-native';
 
 type InputProps = {
-  label: string
-  error?: FieldError | undefined
-} & TextInputProps
+  label: string;
+  error?: FieldError | undefined;
+} & TextInputProps;
 
-const Input = ({ label, error, ...props }: InputProps) => {
+const Input = ({label, error, ...props}: InputProps) => {
   return (
     <Box flexDirection="column">
       <Text variant="textXs" textTransform="uppercase" mb="3.5">
         {label}
       </Text>
       <TextInput
-        style={{
-          padding: 16,
-          borderWidth: 1,
-          borderColor: error ? theme.colors.rose500 : theme.colors.grey,
-          borderRadius: theme.borderRadii["rounded-7xl"],
-        }}
+        style={[
+          styles.textInput,
+          {
+            borderColor: error ? theme.colors.rose500 : theme.colors.grey,
+          },
+        ]}
         {...props}
       />
       {error && (
@@ -28,9 +28,15 @@ const Input = ({ label, error, ...props }: InputProps) => {
         </Text>
       )}
     </Box>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  textInput: {
+    padding: 16,
+    borderWidth: 1,
+    borderRadius: theme.borderRadii['rounded-7xl'],
+  },
+});

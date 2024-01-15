@@ -1,30 +1,29 @@
-import Loader from "@/components/shared/loader"
-import NavigateBack from "@/components/shared/navigate-back"
-import SafeAreaWrapper from "@/components/shared/safe-area-wrapper"
-import Task from "@/components/tasks/task"
-import TaskActions from "@/components/tasks/task-actions"
-import { CategoriesStackParamList } from "@/navigation/types"
-import axiosInstance, { fetcher } from "@/services/config"
-import { ICategory, ITask } from "@/types"
-import { Box, Text } from "@/utils/theme"
-import { RouteProp, useRoute } from "@react-navigation/native"
-import React, { useEffect } from "react"
-import { FlatList } from "react-native"
-import useSWR from "swr"
+import ItemSeparator from '@/components/ItemSeparator';
+import Loader from '@/components/shared/loader';
+import NavigateBack from '@/components/shared/navigate-back';
+import SafeAreaWrapper from '@/components/shared/safe-area-wrapper';
+import Task from '@/components/tasks/task';
+import TaskActions from '@/components/tasks/task-actions';
+import {CategoriesStackParamList} from '@/navigation/types';
+import {fetcher} from '@/services/config';
+import {ICategory, ITask} from '@/types';
+import {Box, Text} from '@/utils/theme';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import React from 'react';
+import {FlatList} from 'react-native';
+import useSWR from 'swr';
 
-type CategoryScreenRouteProp = RouteProp<CategoriesStackParamList, "Category">
+type CategoryScreenRouteProp = RouteProp<CategoriesStackParamList, 'Category'>;
 
 const CategoryScreen = () => {
-  const route = useRoute<CategoryScreenRouteProp>()
+  const route = useRoute<CategoryScreenRouteProp>();
 
-  const { id } = route.params
+  const {id} = route.params;
 
-  const { data: category, isLoading: isLoadingCategory } = useSWR<ICategory>(
+  const {data: category, isLoading: isLoadingCategory} = useSWR<ICategory>(
     `categories/${id}`,
-    fetcher
-  )
-
-  console.log(`category`, JSON.stringify(category, null, 2))
+    fetcher,
+  );
 
   const {
     data: tasks,
@@ -32,10 +31,10 @@ const CategoryScreen = () => {
     mutate: mutateTasks,
   } = useSWR<ITask[]>(`tasks/tasks-by-categories/${id}`, fetcher, {
     refreshInterval: 1000,
-  })
+  });
 
   if (isLoadingTasks || isLoadingCategory || !category || !tasks) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
@@ -55,8 +54,7 @@ const CategoryScreen = () => {
             ml="3"
             style={{
               color: category.color.code,
-            }}
-          >
+            }}>
             {category.name}
           </Text>
         </Box>
@@ -66,14 +64,14 @@ const CategoryScreen = () => {
 
         <FlatList
           data={tasks}
-          renderItem={({ item, index }) => {
-            return <Task task={item} mutateTasks={mutateTasks} />
+          renderItem={({item}) => {
+            return <Task task={item} mutateTasks={mutateTasks} />;
           }}
-          ItemSeparatorComponent={() => <Box height={14} />}
+          ItemSeparatorComponent={ItemSeparator}
         />
       </Box>
     </SafeAreaWrapper>
-  )
-}
+  );
+};
 
-export default CategoryScreen
+export default CategoryScreen;

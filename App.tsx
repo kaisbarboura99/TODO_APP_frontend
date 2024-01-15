@@ -1,11 +1,11 @@
-import Navigation from "@/navigation";
-import theme from "@/utils/theme";
-import { ThemeProvider } from "@shopify/restyle";
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { AppState } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { SWRConfig } from "swr";
+import Navigation from '@/navigation';
+import theme from '@/utils/theme';
+import { ThemeProvider } from '@shopify/restyle';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { AppState } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SWRConfig } from 'swr';
 
 export default function App() {
   return (
@@ -23,7 +23,7 @@ export default function App() {
               const onAppStateChange = (nextAppState: any) => {
                 if (
                   appState.match(/inactive|background/) &&
-                  nextAppState === "active"
+                  nextAppState === 'active'
                 ) {
                   callback();
                 }
@@ -31,7 +31,7 @@ export default function App() {
               };
 
               const subscription = AppState.addEventListener(
-                "change",
+                'change',
                 onAppStateChange
               );
 

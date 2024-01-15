@@ -1,23 +1,23 @@
-import Loader from "@/components/shared/loader"
-import NavigateBack from "@/components/shared/navigate-back"
-import SafeAreaWrapper from "@/components/shared/safe-area-wrapper"
-import Task from "@/components/tasks/task"
-import { fetcher } from "@/services/config"
-import { ITask } from "@/types"
-import { Box, Text } from "@/utils/theme"
-import React from "react"
-import { FlatList } from "react-native"
-import useSWR from "swr"
+import ItemSeparator from '@/components/ItemSeparator';
+import Loader from '@/components/shared/loader';
+import SafeAreaWrapper from '@/components/shared/safe-area-wrapper';
+import Task from '@/components/tasks/task';
+import {fetcher} from '@/services/config';
+import {ITask} from '@/types';
+import {Box, Text} from '@/utils/theme';
+import React from 'react';
+import {FlatList} from 'react-native';
+import useSWR from 'swr';
 
 const TodayScreen = () => {
   const {
     data: tasks,
     isLoading: isLoadingTasks,
     mutate: mutateTasks,
-  } = useSWR<ITask[]>(`tasks/today`, fetcher)
+  } = useSWR<ITask[]>('tasks/today', fetcher);
 
   if (isLoadingTasks || !tasks) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
@@ -33,15 +33,15 @@ const TodayScreen = () => {
 
         <FlatList
           data={tasks}
-          renderItem={({ item, index }) => {
-            return <Task task={item} mutateTasks={mutateTasks} />
+          renderItem={({item}) => {
+            return <Task task={item} mutateTasks={mutateTasks} />;
           }}
-          ItemSeparatorComponent={() => <Box height={14} />}
-          keyExtractor={(item) => item._id}
+          ItemSeparatorComponent={ItemSeparator}
+          keyExtractor={item => item._id}
         />
       </Box>
     </SafeAreaWrapper>
-  )
-}
+  );
+};
 
-export default TodayScreen
+export default TodayScreen;
