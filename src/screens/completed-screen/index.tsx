@@ -1,6 +1,5 @@
 import ItemSeparator from '@/components/ItemSeparator';
 import Loader from '@/components/shared/loader';
-import NavigateBack from '@/components/shared/navigate-back';
 import SafeAreaWrapper from '@/components/shared/safe-area-wrapper';
 import Task from '@/components/tasks/task';
 import {fetcher} from '@/services/config';

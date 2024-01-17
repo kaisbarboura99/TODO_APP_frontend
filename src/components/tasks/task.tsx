@@ -1,7 +1,7 @@
 import {HomeScreenNavigationType} from '@/navigation/types';
 import axiosInstance from '@/services/config';
 import {ITask} from '@/types';
-import {erroHandler} from '@/utils/errorHandler';
+import {errorHandler} from '@/utils/errorHandler';
 import {AnimatedBox, Box, Text} from '@/utils/theme';
 import {Ionicons} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
@@ -35,7 +35,7 @@ const toggleTaskStatusRequest = async (
       ...arg,
     });
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 
@@ -64,7 +64,7 @@ const Task = ({task, mutateTasks}: TaskProps) => {
         checkmarkIconSize.value = 1;
       }
     } catch (error) {
-      erroHandler(error);
+      errorHandler(error);
     }
   };
 

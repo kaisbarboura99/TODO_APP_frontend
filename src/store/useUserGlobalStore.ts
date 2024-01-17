@@ -1,18 +1,18 @@
-import { IAuthenticatedUser } from '@/types';
+import {IAuthenticatedUser} from '@/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import {create} from 'zustand';
+import {createJSONStorage, persist} from 'zustand/middleware';
 
 interface IUserGlobalStore {
-  user: IAuthenticatedUser | null
-  updateUser: (user: IAuthenticatedUser | null) => void
+  user: IAuthenticatedUser | null;
+  updateUser: (user: IAuthenticatedUser | null) => void;
 }
 
 const useUserGlobalStore = create<IUserGlobalStore>()(
   persist(
-    (set, get) => ({
+    set => ({
       user: null,
-      updateUser: (user) => {
+      updateUser: user => {
         set({
           user,
         });
@@ -21,8 +21,8 @@ const useUserGlobalStore = create<IUserGlobalStore>()(
     {
       name: 'blossom-application-user-store',
       storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
+    },
+  ),
 );
 
 export default useUserGlobalStore;

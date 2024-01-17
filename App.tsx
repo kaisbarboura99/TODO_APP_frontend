@@ -1,11 +1,12 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import Navigation from '@/navigation';
 import theme from '@/utils/theme';
-import { ThemeProvider } from '@shopify/restyle';
-import { StatusBar } from 'expo-status-bar';
+import {ThemeProvider} from '@shopify/restyle';
+import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import { AppState } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { SWRConfig } from 'swr';
+import {AppState} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SWRConfig} from 'swr';
 
 export default function App() {
   return (
@@ -17,10 +18,11 @@ export default function App() {
             isVisible: () => {
               return true;
             },
+
             initFocus(callback) {
               let appState = AppState.currentState;
 
-              const onAppStateChange = (nextAppState: any) => {
+              const onAppStateChange = (nextAppState: unknown) => {
                 if (
                   appState.match(/inactive|background/) &&
                   nextAppState === 'active'
@@ -32,15 +34,14 @@ export default function App() {
 
               const subscription = AppState.addEventListener(
                 'change',
-                onAppStateChange
+                onAppStateChange,
               );
 
               return () => {
                 subscription.remove();
               };
             },
-          }}
-        >
+          }}>
           <Navigation />
         </SWRConfig>
         <StatusBar translucent />

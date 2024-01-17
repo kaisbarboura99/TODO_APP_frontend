@@ -1,4 +1,4 @@
-import axiosInstance, {BASE_URL, fetcher} from '@/services/config';
+import axiosInstance, {fetcher} from '@/services/config';
 import {ICategory, ITaskRequest} from '@/types';
 import {Box, Text} from '@/utils/theme';
 import {format, isToday} from 'date-fns';
@@ -8,7 +8,8 @@ import {Calendar} from 'react-native-calendars';
 import useSWR, {useSWRConfig} from 'swr';
 import useSWRMutation from 'swr/mutation';
 import Loader from '../shared/loader';
-import {erroHandler} from '@/utils/errorHandler';
+import {errorHandler} from '@/utils/errorHandler';
+import {styles} from './task-actions-styles';
 
 type TaskActionsProps = {
   categoryId: string;
@@ -25,7 +26,7 @@ const createTaskRequest = async (url: string, {arg}: {arg: ITaskRequest}) => {
       ...arg,
     });
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 
@@ -37,7 +38,7 @@ const TaskActions = ({categoryId}: TaskActionsProps) => {
     name: '',
   });
 
-  const {data, trigger} = useSWRMutation('tasks/create', createTaskRequest);
+  const {trigger} = useSWRMutation('tasks/create', createTaskRequest);
 
   const [isSelectingCategory, setIsSelectingCategory] =
     useState<boolean>(false);
@@ -58,8 +59,6 @@ const TaskActions = ({categoryId}: TaskActionsProps) => {
     _category => _category._id === newTask.categoryId,
   );
 
-  console.log('selectedCategory', JSON.stringify(selectedCategory, null, 2));
-
   const onCreateTask = async () => {
     try {
       if (newTask.name.length.toString().trim().length > 0) {
@@ -78,27 +77,16 @@ const TaskActions = ({categoryId}: TaskActionsProps) => {
         await mutate('tasks/');
       }
     } catch (error) {
-      erroHandler(error);
+      errorHandler(error);
     }
   };
 
   return (
-    <Box>
-      <Box
-        bg="lightGray"
-        px="4"
-        py="3.5"
-        borderRadius="rounded-5xl"
-        flexDirection="row"
-        position="relative">
+    <Box style={styles.container}>
+      <Box style={styles.dateCategoryContainer}>
         <TextInput
           placeholder="Create a new task"
-          style={{
-            paddingVertical: 8,
-            paddingHorizontal: 8,
-            fontSize: 16,
-            width: '50%',
-          }}
+          style={styles.input}
           maxLength={36}
           textAlignVertical="center"
           value={newTask.name}
@@ -112,7 +100,7 @@ const TaskActions = ({categoryId}: TaskActionsProps) => {
           }}
           onSubmitEditing={onCreateTask}
         />
-        <Box flexDirection="row" alignItems="center">
+        <Box style={styles.dateCategoryContainer}>
           <Pressable
             onPress={() => {
               setIsSelectingDate(prev => !prev);

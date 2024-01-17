@@ -1,6 +1,6 @@
 import {ICategoryRequest} from '@/types';
 import axiosInstance from '../config';
-import {erroHandler} from '@/utils/errorHandler';
+import {errorHandler} from '@/utils/errorHandler';
 import {RouteProp} from '@react-navigation/native';
 import {CategoriesStackParamList} from '@/navigation/types';
 
@@ -13,7 +13,7 @@ const createCategoryRequest = async (
       ...arg,
     });
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 const updateCategoryRequest = async (
@@ -25,7 +25,7 @@ const updateCategoryRequest = async (
       ...arg,
     });
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 
@@ -36,7 +36,7 @@ const deleteCategoryRequest = async (
   try {
     await axiosInstance.delete(`${url}/${arg.id}`);
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 

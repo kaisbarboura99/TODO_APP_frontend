@@ -15,7 +15,8 @@ import useSWR, {useSWRConfig} from 'swr';
 import useSWRMutation from 'swr/mutation';
 import {Calendar} from 'react-native-calendars';
 import {today} from '@/components/tasks/task-actions';
-import {erroHandler} from '@/utils/errorHandler';
+import {errorHandler} from '@/utils/errorHandler';
+import {styles} from './editTaskScreen.styles';
 
 type EditTaskRouteType = RouteProp<HomeStackParamList, 'EditTask'>;
 
@@ -25,7 +26,7 @@ const updateTaskRequest = async (url: string, {arg}: {arg: ITask}) => {
       ...arg,
     });
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 
@@ -33,7 +34,7 @@ const deleteTaskRequest = async (url: string, {arg}: {arg: {id: string}}) => {
   try {
     return await axiosInstance.delete(`${url}/${arg.id}`);
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 
@@ -70,7 +71,7 @@ const EditTaskScreen = () => {
       await mutate('tasks/');
       navigation.goBack();
     } catch (error) {
-      erroHandler(error);
+      errorHandler(error);
     }
   };
 
@@ -82,7 +83,7 @@ const EditTaskScreen = () => {
         navigation.goBack();
       }
     } catch (error) {
-      erroHandler(error);
+      errorHandler(error);
     }
   };
 
@@ -96,11 +97,8 @@ const EditTaskScreen = () => {
 
   return (
     <SafeAreaWrapper>
-      <Box flex={1} mx="4">
-        <Box
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="space-between">
+      <Box style={styles.container}>
+        <Box style={styles.header}>
           <NavigateBack />
           <Pressable onPress={deleteTask}>
             <MaterialCommunityIcons
@@ -113,21 +111,10 @@ const EditTaskScreen = () => {
 
         <Box height={20} />
 
-        <Box
-          bg="lightGray"
-          px="4"
-          py="3.5"
-          borderRadius="rounded-5xl"
-          flexDirection="row"
-          position="relative">
+        <Box style={styles.taskInputContainer}>
           <TextInput
             placeholder="Create a new task"
-            style={{
-              paddingVertical: 8,
-              paddingHorizontal: 8,
-              fontSize: 16,
-              width: '50%',
-            }}
+            style={styles.taskInput}
             maxLength={36}
             textAlignVertical="center"
             value={updatedTask.name}
@@ -141,7 +128,7 @@ const EditTaskScreen = () => {
             }}
             onSubmitEditing={updateTask}
           />
-          <Box flexDirection="row" alignItems="center">
+          <Box style={styles.dateCategoryContainer}>
             <Pressable
               onPress={() => {
                 setIsSelectingDate(prev => !prev);
@@ -192,10 +179,10 @@ const EditTaskScreen = () => {
         </Box>
 
         {isSelectingCategory && (
-          <Box alignItems="flex-end" my="4" justifyContent="flex-end">
+          <Box style={styles.categoryListContainer}>
             <FlatList
               data={categories}
-              renderItem={({item, index}) => {
+              renderItem={({item}) => {
                 return (
                   <Pressable
                     onPress={() => {
@@ -207,23 +194,7 @@ const EditTaskScreen = () => {
                       });
                       setIsSelectingCategory(false);
                     }}>
-                    <Box
-                      bg="gray250"
-                      p="2"
-                      borderTopStartRadius={
-                        index === 0 ? 'rounded-3xl' : 'none'
-                      }
-                      borderTopEndRadius={index === 0 ? 'rounded-3xl' : 'none'}
-                      borderBottomStartRadius={
-                        categories?.length - 1 === index
-                          ? 'rounded-2xl'
-                          : 'none'
-                      }
-                      borderBottomEndRadius={
-                        categories?.length - 1 === index
-                          ? 'rounded-2xl'
-                          : 'none'
-                      }>
+                    <Box style={styles.categoryItemContainer}>
                       <Box flexDirection="row">
                         <Text>{item.icon.symbol}</Text>
                         <Text
@@ -242,7 +213,7 @@ const EditTaskScreen = () => {
           </Box>
         )}
         {isSelectingDate && (
-          <Box>
+          <Box style={styles.calendarContainer}>
             <Calendar
               minDate={format(today, 'Y-MM-dd')}
               onDayPress={day => {

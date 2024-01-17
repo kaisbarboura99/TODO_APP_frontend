@@ -1,4 +1,4 @@
-import {erroHandler} from '@/utils/errorHandler';
+import {errorHandler} from '@/utils/errorHandler';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 export const BASE_URL = 'http://192.168.0.62:1337/';
@@ -16,7 +16,7 @@ export const saveToken = async (key: string, value: string) => {
   try {
     await SecureStore.setItemAsync(key, value);
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 

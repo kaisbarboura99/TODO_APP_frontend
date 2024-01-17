@@ -1,4 +1,4 @@
-import Icons from '@/components/shared/icons';
+// import Icons from '@/components/shared/icons';
 import CompletedScreen from '@/screens/completed-screen';
 import TodayScreen from '@/screens/today-screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -24,7 +24,7 @@ const BottomTabNavigator = () => {
         component={HomeStackNavigator}
         options={() => ({
           title: 'Home',
-          tabBarIcon: ({color}) => <Icons name="home" color={color} />,
+          // tabBarIcon: ({color}) => <Icons name="home" color={color} />,
           headerShown: false,
         })}
       />
@@ -33,16 +33,17 @@ const BottomTabNavigator = () => {
         component={CompletedScreen}
         options={() => ({
           title: 'Completed',
-          tabBarIcon: ({color}) => <Icons name="completed" color={color} />,
+          // tabBarIcon: ({color}) => <Icons name="completed" color={color} />,
           headerShown: false,
         })}
+        a
       />
       <Tab.Screen
         name="Today"
         component={TodayScreen}
         options={() => ({
           title: 'Today',
-          tabBarIcon: ({color}) => <Icons name="calendar" color={color} />,
+          // tabBarIcon: ({color}) => <Icons name="calendar" color={color} />,
           headerShown: false,
         })}
       />
@@ -52,7 +53,7 @@ const BottomTabNavigator = () => {
         component={CategoriesStackNavigator}
         options={() => ({
           title: 'Categories',
-          tabBarIcon: ({color}) => <Icons name="categories" color={color} />,
+          // tabBarIcon: ({color}) => <Icons name="categories" color={color} />,
           headerShown: false,
         })}
       />

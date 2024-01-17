@@ -1,6 +1,6 @@
 import {IUser} from '@/types';
 import axiosInstance, {BLOSSOM_TOKEN_NAME, saveToken} from './config';
-import {erroHandler} from '@/utils/errorHandler';
+import {errorHandler} from '@/utils/errorHandler';
 
 type RegisterUserTypes = IUser;
 
@@ -18,7 +18,7 @@ export const registerUser = async ({
 
     return response.data.user;
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };
 
@@ -37,6 +37,6 @@ export const loginUser = async ({email, password}: LoginUserTypes) => {
 
     return response.data.user;
   } catch (error) {
-    erroHandler(error);
+    errorHandler(error);
   }
 };

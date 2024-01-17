@@ -1,6 +1,6 @@
 import {BASE_URL} from '@/services/config';
 import {ICategory, IColor, IIcon} from '@/types';
-import {erroHandler} from '@/utils/errorHandler';
+import {errorHandler} from '@/utils/errorHandler';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useState} from 'react';
 import {useSWRConfig} from 'swr';
@@ -66,7 +66,7 @@ const useCreateCategory = () => {
       await mutate(`${BASE_URL}categories`);
       navigation.goBack();
     } catch (error) {
-      erroHandler(error);
+      errorHandler(error);
     }
   };
 
@@ -96,7 +96,7 @@ const useCreateCategory = () => {
       await mutate(`${BASE_URL}categories`);
       navigation.goBack();
     } catch (error) {
-      erroHandler(error);
+      errorHandler(error);
     }
   };
 
